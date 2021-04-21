@@ -25,15 +25,17 @@ using Poco::DateTimeFormatter;
 using Poco::DateTimeParser;
 
 
-int main(int argc, char** argv)
+int main(int, char**)
 {
     LocalDateTime now;
-
     std::string str = DateTimeFormatter::format(now, DateTimeFormat::ISO8601_FORMAT);
+    std::cout << str << std::endl;
+
     DateTime dt;
     int tzd;
     DateTimeParser::parse(DateTimeFormat::ISO8601_FORMAT, str, dt, tzd);
     dt.makeUTC(tzd);
     LocalDateTime ldt(tzd, dt);
+
     return 0;
 }
